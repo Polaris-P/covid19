@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <title>疫情信息</title>
+    <script src="../static/js/jquery-3.5.1.min.js"></script>
+    
+    
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    
+</head>
+
+ 
+<body>
+  <div class="docer">
+    <div class="btn5">
+      <a href="#dataMain"><strong>国内疫情</strong></a>
+    </div>
+    <div class="btn5">
+      <a href="#timeNews"><strong>实时播报</strong></a>
+    </div>
+    <div class="btn5">
+      <a href="http://bmfw.www.gov.cn/hsjcjgcx/index.html?ADTAG=feiyanh5"><strong>核酸检测</strong></a>
+    </div>
+  </div>
+    <header>
+        <!-- 头部主题栏 -->
+        <div class="header">
+            <p class="littleTitle">新型冠状病毒肺炎</p>
+            <h1 class="title">疫情实时大数据报告</h1>
+        </div>
+    </header>
+    <div class="main">
+
+        <!-- 国内疫情数据总览-->
+        <div class="dataMain" id="dataMain">
+            <div class="data">
+                <!-- 第一行数据 新增数据 -->
+                <div class="firstTableName">
+                    <div ><strong>新增确诊</strong></div>
+                    <div ><strong>新增本土</strong> </div>
+                    <div ><strong>新增境外</strong></div>
+                    <div ><strong>新增无症状</strong></div>
+                </div>
+                <div class="firstTableData">
+                    {% for data1 in data1 %}
+                    <div >{{data1}}</div>
+                    {% endfor %}
+                   
+                </div>
+                <br>
+                <!-- 第二行数据 现有数据 -->
+                <div class="secondTableName">
+                    <div ><strong>现有确诊</strong></div>
+                    <div ><strong>现有本土</strong></div>
+                    <div ><strong>现有重症</strong></div>
+                    <div ><strong>现有无症状</strong></div>
+                </div>
+                
+                <div class="secondTableData">
+                    {% for data2 in data2 %}
+                    <div >{{data2}}</div>
+                    {% endfor %}
+                </div>
+                
+                <!-- 美丽的分割线 -->
+                <hr>
+                <!-- 第三行数据 累计数据 -->
+                <div class="thirdTableName">
+                    <div ><strong>累计确诊</strong></div>
+                    <div ><strong>累计境外</strong></div>
+                    <div ><strong>累计治愈</strong></div>
+                    <div ><strong>累计死亡</strong></div>
+                </div>
+                
+                <div class="thirdTableData">
+                    {% for data3 in data3 %}
+                    <div >{{data3}}</div>
+                    {% endfor %}
+                </div> 
+            </div>
+        </div>
+        <!-- 分割空白区 -->
+        <div class="split"></div>
+        <!-- 疫情速报 -->
+        <div class="report">
+            <h3>
+                <span class="reportS1"><strong>疫情速报</strong></span>
+            </h3>
+            <h5>
+                <span class="reportS2">该数据为31省（自治区、直辖市）本土新增，及港澳台新增确诊数据</span>
+            </h5>
+            <div>
+                <table class="city table table-hover">
+                    <tr class="cityMenu">
+                        <th class="area">地区</th>
+                        <th class="add center btnEdge">新增确诊</th>
+                        <th class="now center btnEdge">现有确诊</th>
+                    </tr>
+                    {% for city_data in city_data %}
+                    <tr class="cityData">
+                            <th class="areaData"><a href="http://127.0.0.1:5000/{{city_data[1]}}"><span>{{city_data[0]}}</span>   <span class="cityFont">{{city_data[1]}}</span></a></th>
+                            <th class="addData center">{{city_data[2]}}</th>
+                            <th class="nowData center">{{city_data[3]}}</th>  
+                    </tr>
+                    {% endfor %}
+                </table>
+                <div class="spread">
+                    <span class="spreadBtn">展开全部</span>
+                    <!-- <div class="icon"></div>    -->
+                </div>
+            </div>
+            <!-- 分割空白区 -->
+            <div class="split"></div>
+            <!-- 国家地图 -->
+            <div class="map">
+                
+                <div class="button">
+                    <div class="btn1 btnEdge"><span>现有确诊</span></div>
+                    <div class="btn1 btnEdge"><span>新增确诊</span></div>
+                </div>
+                <div class="chart">
+                    <div class="nowConfirmMap"></div>
+                    <div class="confirmAddMap"></div>
+                </div>
+                
+            </div>
+            <!-- 本土与输入 -->
+            <div class="Add">
+                <div class="chart">
+                    <div class="localConfirmAdd"></div>
+                    <div class="importedCaseAdd"></div>
+                </div>
+                <div class="button">
+                    <div class="btn2 btnEdge">新增本土趋势</div>
+                    <div class="btn2 btnEdge">新增境外趋势</div>
+                </div>
+                
+            </div>
+            <!-- 全国新增对比 -->
+            <div class="national">
+                <div class="chart">
+                    <div class="newAdd"></div>
+                    <div class="noInAndCon"></div>
+                    <div class="healAndDead"></div>
+                </div>
+                <div class="button">
+                    <div class="btn3 btnEdge">全国疫情新增趋势</div>
+                    <div class="btn3 btnEdge">全国确诊<br>疑似趋势</div>
+                    <div class="btn3 btnEdge">全国累计<br>治愈死亡</div>
+                </div>
+                
+            </div>
+            <!-- 分割空白区 -->
+            <div class="split"></div>
+            <!-- 国内各省汇总 -->
+            <div class="domestic">
+                <h3>
+                    <span class="reportS1"><strong>国内各省疫情统计汇总</strong></span>
+                </h3>
+                <h5>
+                    <span class="reportS2">7:00-10:00为更新高峰，数据若滞后敬请谅解</span>
+                </h5>
+                <table class="province table table-hover">
+                    <tr class="proMenu">
+                        <th>地区</th>
+                        <th class="center">新增</th>
+                        <th class="center">累计</th>
+                        <th class="center">治愈</th>
+                        <th class="center">死亡</th>
+                    </tr>
+                    {% for province_data in province_data %}
+                    <tr class="proData">
+                        <th ><a href="http://127.0.0.1:5000/{{province_data[0]}}">{{province_data[0]}}</a></th>
+                        <th class="center">{{province_data[1]}}</th>
+                        <th class="center">{{province_data[2]}}</th>
+                        <th class="center">{{province_data[3]}}</th>
+                        <th class="center">{{province_data[4]}}</th>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <div class="spread">
+                    <span class="spreadBtn">展开全部</span>    
+                </div>
+            </div>
+            <!-- 分割空白区 -->
+            <div class="split"></div>
+            <!-- 实时播报 -->
+            <div id="timeNews">
+                <h3>
+                    <span class="reportS1"><strong>实时播报</strong></span>
+                </h3>
+                <div>
+                    <ul class="news">
+                        {% for hot in hot %}
+                        <li class="newsData">{{hot[0]}}</li>
+                        <li class="newsData"><h3><strong><a href="{{hot[2]}}" id="hot">{{hot[1]}}</a></strong></h3></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="spread">
+                    <span class="spreadBtn">展开全部</span>    
+                </div>
+            </div>
+            <!-- 分割空白区 -->
+            <div class="split"></div>
+        </div>
+        
+    </div>
+    <br>
+    <!-- 末尾提示语 -->
+    <div class="end">
+        <h3><strong>积极防护，保护自己，戴口罩，勤洗手</strong></h3>
+
+    </div>
+
+    <footer>
+        <div class="foot1"></div>
+
+    </footer>
+    <script>
+        var test = window.location.href;
+        console.log(test)
+    </script>
+    <script src="../static/js/main.js"></script> 
+    <script src="../static/js/echarts.min.js" ></script>
+    <script src="../static/js/china.js" ></script>
+    <script src="../static/js/conmap.js"></script>
+    <script src="../static/js/conaddmap.js"></script>
+    <script src="../static/js/localcon.js"></script>
+    <script src="../static/js/imp.js"></script>
+    <script src="../static/js/newadd.js"></script>
+    <script src="../static/js/noin.js"></script>
+    <script src="../static/js/heal.js"></script>
+    
+    <script src="../static/js/res.js"></script>
+    
+    
+    
+    
+     
+    
+</body>
+
+</html>

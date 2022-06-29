@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>疫情信息</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="../static/css/common.css">
+    <script src="../static/js/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+     <div class="main">
+                <!-- 头部主题栏 -->
+        <div class="header">
+            <p class="littleTitle">新型冠状病毒肺炎</p>
+            <h1 class="title">疫情实时大数据报告</h1>
+        </div>
+        <!-- 国内疫情数据总览-->
+        <div class="dataMain">
+            <div class="data">
+                <!-- 第一行数据 新增数据 -->
+                <div class="areaMenu">
+                    <div >现有确诊</div>
+                    <div >新增确诊</div>
+                    <div >累计确诊</div>
+                    <div >累计治愈</div>
+                    <div >累计死亡</div>
+                </div>
+                <div class="areaData">
+                    {% for data1 in data1 %}
+                    <div >{{data1}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="charts">
+            <div class="chart">
+                <div class="add"></div>
+                <div class="all"></div>
+            </div>
+            <div class="button">
+                <div class="addBtn">新增确诊趋势</div>
+                <div class="allBtn">确诊/治愈/死亡</div>
+            </div>
+        </div>
+        <!-- 疫情速报 -->
+        <div class="report">
+            <h3>
+                <span class="reportS1">疫情速报</span>
+            </h3>
+            <h5>
+                <span class="reportS2">该数据以本地区最新更新数据为准</span>
+            </h5>
+            <div>
+                <table class="table table-hover">
+                    <tr>
+                        <th>地区</th>
+                        <th>新增</th>
+                        <th>累计</th>
+                        <th>治愈</th>
+                        <th>死亡</th>
+                    </tr>
+                    {% for data2 in data2 %}
+                    <tr>
+                        <th>{{data2[0]}}</th>
+                        <th>{{data2[1]}}</th>
+                        <th>{{data2[2]}}</th>
+                        <th>{{data2[3]}}</th>
+                        <th>{{data2[4]}}</th>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!-- 末尾提示语 -->
+        <div class="end">
+            <h3><strong>积极防护，保护自己，戴口罩，勤洗手</strong></h3>
+
+        </div>   
+     </div>
+     <script>
+        var test1 = window.location.pathname;
+        var test = decodeURIComponent(test1);
+        console.log(test)
+    </script>
+    
+    <script src="../static/js/echarts.min.js"></script>
+    <script src="../static/js/common_con.js"></script>
+    <script src="../static/js/common_all.js"></script>
+    <script src="../static/js/common_res.js"></script>
+</body>
+</html>
